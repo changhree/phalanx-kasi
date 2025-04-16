@@ -18,7 +18,7 @@ appOfAppsName: "app-of-apps"
 butlerServerRepositories: {}
 
 # -- URL of the repository for all applications
-repoUrl: https://github.com/lsst-sqre/phalanx.git
+repoUrl: https://github.com/changhree/phalanx-kasi.git
 
 # -- Revision of repository to use for all applications
 targetRevision: "main"

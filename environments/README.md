@@ -106,7 +106,7 @@
 | fqdn | string | None, must be set | Fully-qualified domain name where the environment is running |
 | name | string | None, must be set | Name of the environment |
 | namespaceLabels | object | `{}` | Add labels for application namespaces. |
-| repoUrl | string | `"https://github.com/lsst-sqre/phalanx.git"` | URL of the repository for all applications |
+| repoUrl | string | `"https://github.com/changhree/phalanx-kasi.git"` | URL of the repository for all applications |
 | targetRevision | string | `"main"` | Revision of repository to use for all applications |
 | vaultPathPrefix | string | None, must be set | Prefix for Vault secrets for this environment |
 | vaultUrl | string | `"https://vault.lsst.cloud/"` | URL of Vault server for this environment |
