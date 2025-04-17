@@ -9,7 +9,6 @@ ingress-nginx:
       loadBalancerIP: ~
     extraArgs:
       default-ssl-certificate: ingress-nginx/ingress-certificate
-      proxy-ssl-verify: "off"
 
 vaultCertificate:
   enabled: true
