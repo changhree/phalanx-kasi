@@ -8,4 +8,4 @@ applications:
   gafaelfawr: false
   nublado: false
   portal: true
-  squareone: false
+  squareone: true

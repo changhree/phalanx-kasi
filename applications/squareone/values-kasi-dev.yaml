@@ -1,5 +1,2 @@
 config:
   siteName: "Rubin Science Platform @ KASI"
-
-ingress:
-  tls: false
