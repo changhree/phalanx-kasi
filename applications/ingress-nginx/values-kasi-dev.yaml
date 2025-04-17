@@ -1,13 +1,4 @@
 ingress-nginx:
   controller:
-    kind: DaemonSet
-    config:
-      use-proxy-protocol: "false"
-      enable-health-monitor: "false"
     service:
       loadBalancerIP: "10.0.1.80"
-    extraArgs:
-      default-ssl-certificate: ingress-nginx/ingress-certificate
-    proxy-ssl-verify: "off"
-vaultCertificate:
-  enabled: true
