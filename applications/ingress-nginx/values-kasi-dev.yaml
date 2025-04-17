@@ -1,12 +1,13 @@
 ingress-nginx:
   controller:
-    kind: DaemonSet
-    config:
-      use-proxy-protocol: "false"
-      enable-health-monitor: "false"
+    resources: {}
     service:
-      type: LoadBalancer
-      loadBalancerIP: ~
+      externalTrafficPolicy: null
+      type: ClusterIP
+    hostNetwork: true
+    dnsPolicy: ClusterFirstWithHostNet
+    admissionWebhooks:
+      enabled: false
     extraArgs:
       default-ssl-certificate: ingress-nginx/ingress-certificate
 
