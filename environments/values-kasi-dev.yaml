@@ -10,3 +10,4 @@ applications:
   portal: true
   squareone: true
   strimzi: true
+  strimzi-access-operator: true
