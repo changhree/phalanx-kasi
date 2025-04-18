@@ -4,6 +4,6 @@ strimzi-kafka-operator:
       memory: "1Gi"
     requests:
       memory: "512Mi"
-  watchNamespaces:
-    - "sasquatch"
+  # watchNamespaces:
+  #   - "sasquatch"
   logLevel: "INFO"
