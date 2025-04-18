@@ -9,3 +9,4 @@ applications:
   nublado: false
   portal: true
   squareone: true
+  strimzi: true
