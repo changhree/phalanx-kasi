@@ -5,6 +5,7 @@ redis:
 
 config:
   internalDatabase: true
+  updateSchema: true
 
   github:
     clientId: "Ov23liCjN6BS6hAPfgAr"
