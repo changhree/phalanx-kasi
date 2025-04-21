@@ -1,10 +1,7 @@
-# Reset token storage on every Redis restart.
 redis:
   persistence:
     enabled: false
-  resources: {}
-
-resources: {}
+    storageClass: "local-path"
 
 config:
   internalDatabase: true
@@ -41,9 +38,3 @@ config:
 
   initialAdmins:
     - "changhree"
-
-operator:
-  resources: {}
-
-redis-ephemeral:
-  resources: {}
