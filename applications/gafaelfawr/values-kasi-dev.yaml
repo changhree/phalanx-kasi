@@ -1,9 +1,18 @@
+# Reset token storage on every Redis restart.
 redis:
   persistence:
     enabled: false
+  resources: {}
+
+resources: {}
 
 config:
   internalDatabase: true
+  updateSchema: true
+
+  # Support OpenID Connect clients like Chronograf.
+  oidcServer:
+    enabled: true
 
   github:
     clientId: "Ov23liCjN6BS6hAPfgAr"
@@ -37,3 +46,9 @@ config:
 
   initialAdmins:
     - "changhree"
+
+operator:
+  resources: {}
+
+redis-ephemeral:
+  resources: {}
