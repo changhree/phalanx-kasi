@@ -1,11 +1,11 @@
 argo-cd:
   configs:
     cm:
-      url: "https://rsp.kasi.re.kr/argo-cd"
+      url: "https://rsp.local.chr.office/argo-cd"
     secret:
       createSecret: true
 
   server:
     ingress:
-      hostname: "rsp.kasi.re.kr"
+      hostname: "rsp.local.chr.office"
       tls: false
