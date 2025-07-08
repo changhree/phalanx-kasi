@@ -1,8 +1,7 @@
 ingress-nginx:
   controller:
-    allowSnippetAnnotations: true
     service:
-      loadBalancerIP: "10.0.1.90"
+      loadBalancerIP: "10.0.1.120"
     extraArgs:
       default-ssl-certificate: ingress-nginx/ingress-certificate
 vaultCertificate:

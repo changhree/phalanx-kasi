@@ -2,5 +2,5 @@ debug: "true"
 gafaelfawr_db:
   user: "gafaelfawr"
   db: "gafaelfawr"
-postgresStorageClass: "local-path"
+postgresStorageClass: "longhorn" #"local-path"
 resources: {}

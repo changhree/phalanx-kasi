@@ -1,7 +1,7 @@
 redis:
   persistence:
     enabled: false
-    storageClass: "local-path"
+    storageClass: "longhorn" #"local-path"
 
 config:
   internalDatabase: true
