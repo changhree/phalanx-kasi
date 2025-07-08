@@ -1,9 +1,13 @@
 ingress-nginx:
   controller:
+    resources: {}
     service:
+      externalTrafficPolicy: null
       loadBalancerIP: "10.0.1.120"
+    admissionWebhooks:
+      enabled: false
     extraArgs:
-      default-ssl-certificate: ingress-nginx/ingress-certificate
+      default-ssl-certificate: "ingress-nginx/ingress-certificate"
 
 vaultCertificate:
   enabled: true
