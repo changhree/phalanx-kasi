@@ -2,7 +2,7 @@ ingress-nginx:
   controller:
     service:
       loadBalancerIP: "10.0.1.120"
-    extraArgs:
-      default-ssl-certificate: ingress-nginx/ingress-certificate
+    # extraArgs:
+    #   default-ssl-certificate: ingress-nginx/ingress-certificate
 vaultCertificate:
   enabled: true
