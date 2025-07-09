@@ -1,7 +1,7 @@
 redis:
   persistence:
-    enabled: true
-    storageClass: "longhorn"
+    enabled: false
+    # storageClass: "longhorn"
 
 config:
   internalDatabase: true
