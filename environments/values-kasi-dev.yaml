@@ -12,3 +12,4 @@ applications:
   squareone: true
   strimzi: true
   strimzi-access-operator: true
+  tap: true
