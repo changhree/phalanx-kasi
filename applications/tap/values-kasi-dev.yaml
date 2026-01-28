@@ -10,5 +10,5 @@ cadc-tap:
     #   database: "RSPtest"
     #   username: "rspDev"
     gcsBucket: "minio-tap"
-    gcsBucketUrl: "http://minio.local:9000"
+    gcsBucketUrl: "http://10.0.1.179:9000"
     gcsBucketType: "S3"
