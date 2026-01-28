@@ -4,7 +4,11 @@ cadc-tap:
       repository: "lsstsqre/tap-schema-usdf-prod-tap"
 
   config:
-    backend: "postgres"
+    backend: "pg"
+    # pg:
+    #   host: "10.0.1.74:5433"
+    #   database: "RSPtest"
+    #   username: "rspDev"
     gcsBucket: "minio-tap"
     gcsBucketUrl: "http://minio.local:9000"
     gcsBucketType: "S3"
