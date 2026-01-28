@@ -1,7 +1,7 @@
 cadc-tap:
   tapSchema:
     image:
-      repository: "stvoutsin/tap-schema-roe"
+      repository: "lsstsqre/tap-schema-usdf-prod-tap"
 
   config:
     backend: "postgres"
