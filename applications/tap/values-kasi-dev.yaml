@@ -1,6 +1,10 @@
 cadc-tap:
+  tapSchema:
+    image:
+      repository: "stvoutsin/tap-schema-roe"
+
   config:
     backend: "postgres"
     gcsBucket: "minio-tap"
-    gcsBucketUrl: "http://10.0.1.179:9000"
+    gcsBucketUrl: "http://minio.local:9000"
     gcsBucketType: "S3"
