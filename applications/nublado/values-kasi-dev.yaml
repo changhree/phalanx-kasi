@@ -32,15 +32,19 @@ controller:
       # extraAnnotations:
       #   edu.stanford.slac.sdf.project/rsp: "true"
       env:
-        AWS_SHARED_CREDENTIALS_FILE: "/opt/lsst/software/jupyterlab/secrets/aws-credentials.ini"
-        AWS_REQUEST_CHECKSUM_CALCULATION: "WHEN_REQUIRED"
-        DAF_BUTLER_REPOSITORY_INDEX: "/project/data-repos.yaml"
-        DAX_APDB_INDEX_URI: "/sdf/group/rubin/shared/apdb_config/apdb-index.yaml"
-        HOMEDIR_SCHEMA: "initialThenUsername"
-        HUB_ROUTE: "/nb/hub"
-        PGPASSFILE: "/opt/lsst/software/jupyterlab/secrets/postgres-credentials.txt"
-        PGUSER: "rubin"
-        RSP_SITE_TYPE: "staff"
+        AUTO_REPO_URLS: "https://github.com/lsst-uk/rsp-uk-notebooks"
+        AUTO_REPO_BRANCH: "main"
+        AUTO_REPO_SPECS: "https://github.com/lsst-uk/rsp-uk-notebooks@main"
+        RSP_SITE_TYPE: "3dparty"
+        # AWS_SHARED_CREDENTIALS_FILE: "/opt/lsst/software/jupyterlab/secrets/aws-credentials.ini"
+        # AWS_REQUEST_CHECKSUM_CALCULATION: "WHEN_REQUIRED"
+        # DAF_BUTLER_REPOSITORY_INDEX: "/project/data-repos.yaml"
+        # DAX_APDB_INDEX_URI: "/sdf/group/rubin/shared/apdb_config/apdb-index.yaml"
+        # HOMEDIR_SCHEMA: "initialThenUsername"
+        # HUB_ROUTE: "/nb/hub"
+        # PGPASSFILE: "/opt/lsst/software/jupyterlab/secrets/postgres-credentials.txt"
+        # PGUSER: "rubin"
+        # RSP_SITE_TYPE: "staff"
         # S3_ENDPOINT_URL: "https://s3dfrgw.slac.stanford.edu"
         # http_proxy: "http://sdfproxy.sdf.slac.stanford.edu:3128"
         # https_proxy: "http://sdfproxy.sdf.slac.stanford.edu:3128"
@@ -156,25 +160,21 @@ controller:
 proxy:
   ingress:
     annotations:
-      # proxy-body-size is temporary until USDF uses our normal ingress-nginx,
-      # which already configures a larger value.
-      nginx.ingress.kubernetes.io/proxy-body-size: "50m"
-
-jupyterhub:
-  hub:
-    db:
-      url: "postgresql://nublado3@postgres.postgres/nublado3"
-      upgrade: true
-  cull:
-    timeout: 432000  # 5 days
-    maxAge: 691200  # 8 days
+      nginx.ingress.kubernetes.io/proxy-connect-timeout: "50s"
+      nginx.ingress.kubernetes.io/proxy-read-timeout: "50s"
+      nginx.ingress.kubernetes.io/client-max-body-size: "50m"
 
 hub:
   internalDatabase: true
 
+jupyterhub:
+  hub:
+    db:
+      upgrade: true
+
 secrets:
   templateSecrets: false
 
-helm:
-  repos:
-    jupyterhub: https://hub.jupyter.org/helm-chart/
+# helm:
+#   repos:
+#     jupyterhub: https://hub.jupyter.org/helm-chart/
