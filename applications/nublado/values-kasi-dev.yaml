@@ -97,12 +97,12 @@ controller:
           nogroup:x:65534:
 
       pullSecret: "pull-secret"
-      secrets:
-        - secretName: "nublado-lab-secret"
-          secretKey: "aws-credentials.ini"
-        - secretName: "nublado-lab-secret"
-          secretKey: "postgres-credentials.txt"
-      standardInithome: false
+      # secrets:
+      #   - secretName: "nublado-lab-secret"
+      #     secretKey: "aws-credentials.ini"
+      #   - secretName: "nublado-lab-secret"
+      #     secretKey: "postgres-credentials.txt"
+      standardInithome: true #false
       volumes:
         - name: "sdf-home"
           source:
