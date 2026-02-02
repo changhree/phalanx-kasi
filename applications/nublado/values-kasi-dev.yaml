@@ -174,3 +174,7 @@ hub:
 
 secrets:
   templateSecrets: false
+
+helm:
+  repos:
+    jupyterhub: https://hub.jupyter.org/helm-chart/
