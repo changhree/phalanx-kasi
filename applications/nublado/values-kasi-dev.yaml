@@ -1,56 +1,16 @@
 controller:
-  # tolerations:
-  #   - key: edu.stanford.slac.sdf.project/rsp
-  #     effect: NoSchedule
-  #     operator: Equal
-  #     value: "true"
-  # nodeSelector:
-  #   edu.stanford.slac.sdf.project/rsp: "true"
   config:
-    logLevel: "DEBUG"
     images:
       source:
         type: "docker"
-        registry: "ghcr.io"
-        repository: "lsst-sqre/sciplat-lab"
-      pin:
-        - "r29_2_0_rsp2244"
+        registry: "registry.hub.docker.com"
+        repository: "lsstsqre/sciplat-lab"
     lab:
-      # affinity:
-      #   nodeAffinity:
-      #     requiredDuringSchedulingIgnoredDuringExecution:
-      #       nodeSelectorTerms:
-      #         - matchExpressions:
-      #             - key: node-role.kubernetes.io/c
-      #               operator: NotIn
-      #               values:
-      #                 - "true"
-      #             - key: "edu.stanford.slac.sdf.project/rsp"
-      #               operator: In
-      #               values:
-      #                 - "true"
-      # extraAnnotations:
-      #   edu.stanford.slac.sdf.project/rsp: "true"
       env:
         AUTO_REPO_URLS: "https://github.com/lsst-uk/rsp-uk-notebooks"
         AUTO_REPO_BRANCH: "main"
         AUTO_REPO_SPECS: "https://github.com/lsst-uk/rsp-uk-notebooks@main"
         RSP_SITE_TYPE: "3dparty"
-        # AWS_SHARED_CREDENTIALS_FILE: "/opt/lsst/software/jupyterlab/secrets/aws-credentials.ini"
-        # AWS_REQUEST_CHECKSUM_CALCULATION: "WHEN_REQUIRED"
-        # DAF_BUTLER_REPOSITORY_INDEX: "/project/data-repos.yaml"
-        # DAX_APDB_INDEX_URI: "/sdf/group/rubin/shared/apdb_config/apdb-index.yaml"
-        # HOMEDIR_SCHEMA: "initialThenUsername"
-        # HUB_ROUTE: "/nb/hub"
-        # PGPASSFILE: "/opt/lsst/software/jupyterlab/secrets/postgres-credentials.txt"
-        # PGUSER: "rubin"
-        # RSP_SITE_TYPE: "staff"
-        # S3_ENDPOINT_URL: "https://s3dfrgw.slac.stanford.edu"
-        # http_proxy: "http://sdfproxy.sdf.slac.stanford.edu:3128"
-        # https_proxy: "http://sdfproxy.sdf.slac.stanford.edu:3128"
-        # no_proxy: "hub.nublado,.sdf.slac.stanford.edu,.slac.stanford.edu,localhost,127.0.0.1"
-        # LSST_DISABLE_BUCKET_VALIDATION: "1"
-        # LSST_RESOURCES_S3_PROFILE_embargo: "https://sdfembs3.sdf.slac.stanford.edu"
         S3_ENDPOINT_URL: "http://10.0.1.179:9000"
       homedirSchema: "initialThenUsername"
       homeVolumeName: "sdf-home"
@@ -100,7 +60,7 @@ controller:
           rubin_users:x:4085:
           nogroup:x:65534:
 
-      pullSecret: "pull-secret"
+      # pullSecret: "pull-secret"
       # secrets:
       #   - secretName: "nublado-lab-secret"
       #     secretKey: "aws-credentials.ini"
