@@ -59,8 +59,13 @@ controller:
           _ssh:x:101:
           rubin_users:x:4085:
           nogroup:x:65534:
-
-      # pullSecret: "pull-secret"
+      initContainers:
+        - name: "inithome"
+          image:
+            repository: "ghcr.io/lsst-sqre/nublado-inithome"
+            tag: "8.8.0"
+          privileged: true
+      pullSecret: "pull-secret"
       # secrets:
       #   - secretName: "nublado-lab-secret"
       #     secretKey: "aws-credentials.ini"
