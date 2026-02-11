@@ -137,4 +137,4 @@ secrets:
 
 helm:
   repos:
-    jupyterhub: https://hub.jupyter.org/helm-chart/
+    jupyterhub: https://jupyterhub.github.io/helm-chart/
