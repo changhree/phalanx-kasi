@@ -65,7 +65,7 @@ controller:
             repository: "ghcr.io/lsst-sqre/nublado-inithome"
             tag: "8.8.0"
           privileged: true
-      pullSecret: "pull-secret"
+      pullSecret: null #"pull-secret"
       # secrets:
       #   - secretName: "nublado-lab-secret"
       #     secretKey: "aws-credentials.ini"
