@@ -6,104 +6,43 @@ controller:
         registry: "registry.hub.docker.com"
         repository: "lsstsqre/sciplat-lab"
     lab:
-      env:
-        AUTO_REPO_URLS: "https://github.com/lsst-uk/rsp-uk-notebooks"
-        AUTO_REPO_BRANCH: "main"
-        AUTO_REPO_SPECS: "https://github.com/lsst-uk/rsp-uk-notebooks@main"
-        RSP_SITE_TYPE: "3dparty"
-        S3_ENDPOINT_URL: "http://10.0.1.179:9000"
-      homedirSchema: "initialThenUsername"
-      homeVolumeName: "sdf-home"
-      # nodeSelector:
-      #   edu.stanford.slac.sdf.project/rsp: "true"
-      nss:
-        # Add rubin_users group (there is not yet a simpler way to do this).
-        baseGroup: |
-          root:x:0:
-          daemon:x:1:
-          bin:x:2:
-          sys:x:3:
-          adm:x:4:
-          tty:x:5:
-          disk:x:6:
-          lp:x:7:
-          mail:x:8:
-          news:x:9:
-          uucp:x:10:
-          man:x:12:
-          proxy:x:13:
-          kmem:x:15:
-          dialout:x:20:
-          fax:x:21:
-          voice:x:22:
-          cdrom:x:24:
-          floppy:x:25:
-          tape:x:26:
-          sudo:x:27:
-          audio:x:29:
-          dip:x:30:
-          www-data:x:33:
-          backup:x:34:
-          operator:x:37:
-          list:x:38:
-          irc:x:39:
-          src:x:40:
-          shadow:x:42:
-          utmp:x:43:
-          video:x:44:
-          sasl:x:45:
-          plugdev:x:46:
-          staff:x:50:
-          games:x:60:
-          users:x:100:
-          _ssh:x:101:
-          rubin_users:x:4085:
-          nogroup:x:65534:
+      # env:
+      #   PGPASSFILE: "/opt/lsst/software/jupyterlab/secrets/postgres-credentials.txt"
+      #   PGUSER: "lsstprod_ro"
+      #   NO_ACTIVITY_TIMEOUT: "432000"
+      #   CULL_KERNEL_IDLE_TIMEOUT: "432000"
+      #   CULL_TERMINAL_INACTIVE_TIMEOUT: "432000"
+      #   DAF_BUTLER_REPOSITORY_INDEX: "/pbs/throng/lsst/software/rsp/butler-repos.yaml"
+      homedirSchema: "username"
+      # homedirPrefix: "/sps/lsst/users"
+      homedirSuffix: "rsp_home"
       initContainers:
-        - name: "inithome"
+        - name: "homecreation"
           image:
-            repository: "ghcr.io/lsst-sqre/nublado-inithome"
-            tag: "8.8.0"
+            repository: "registry.hub.docker.com/gabrimaine/initdir"
+            tag: "0.0.4"
           privileged: true
-      pullSecret: null #"pull-secret"
-      # secrets:
-      #   - secretName: "nublado-lab-secret"
-      #     secretKey: "aws-credentials.ini"
-      #   - secretName: "nublado-lab-secret"
-      #     secretKey: "postgres-credentials.txt"
-      standardInithome: true #false
+          volumeMounts:
+            - containerPath: "/home"
+              volumeName: "home"
+      secrets:
+        - secretName: "nublado-lab-secret"
+          secretKey: "postgres-credentials.txt"
+      sizes:
+        - size: "small"
+          cpu: 2.0
+          memory: "8Gi"
+        - size: "medium"
+          cpu: 4.0
+          memory: "16Gi"
+        - size: "large"
+          cpu: 8.0
+          memory: "32Gi"
       volumes:
-        - name: "sdf-home"
+        - name: "rsp-home"
           source:
             type: "persistentVolumeClaim"
-            storageClassName: "sdf-home"
-            accessModes:
-              - "ReadWriteMany"
-            resources:
-              requests:
-                storage: "1Gi"
-        - name: "sdf-group-rubin"
-          source:
-            type: "persistentVolumeClaim"
-            storageClassName: "sdf-group-rubin"
-            accessModes:
-              - "ReadWriteMany"
-            resources:
-              requests:
-                storage: "1Gi"
-        - name: "sdf-data-rubin"
-          source:
-            type: "persistentVolumeClaim"
-            storageClassName: "sdf-data-rubin"
-            accessModes:
-              - "ReadWriteMany"
-            resources:
-              requests:
-                storage: "1Gi"
-        - name: "sdf-scratch"
-          source:
-            type: "persistentVolumeClaim"
-            storageClassName: "sdf-scratch"
+            storageClassName: "rsp-home"
             accessModes:
               - "ReadWriteMany"
             resources:
@@ -111,35 +50,17 @@ controller:
                 storage: "1Gi"
       volumeMounts:
         - containerPath: "/home"
-          volumeName: "sdf-home"
-        - containerPath: "/project"
-          subPath: "g"
-          volumeName: "sdf-group-rubin"
-        - containerPath: "/sdf/group/rubin"
-          volumeName: "sdf-group-rubin"
-        - containerPath: "/sdf/data/rubin"
-          volumeName: "sdf-data-rubin"
-        - containerPath: "/scratch"
-          volumeName: "sdf-scratch"
-
-proxy:
-  ingress:
-    annotations:
-      nginx.ingress.kubernetes.io/proxy-connect-timeout: "50s"
-      nginx.ingress.kubernetes.io/proxy-read-timeout: "50s"
-      nginx.ingress.kubernetes.io/client-max-body-size: "50m"
-
-hub:
-  internalDatabase: true
-
+          volumeName: "rsp-home"
 jupyterhub:
+  prePuller:
+    continuous:
+      enabled: true
   hub:
+    baseUrl: "/nb"
     db:
+      url: "postgresql://nublado3@postgres.postgres/nublado3"
       upgrade: true
-
-secrets:
-  templateSecrets: false
-
-helm:
-  repos:
-    jupyterhub: https://jupyterhub.github.io/helm-chart/
+  cull:
+    timeout: 432000
+    every: 300
+    maxAge: 604800
