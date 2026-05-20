@@ -8,5 +8,5 @@ nublado3_db:
   user: 'nublado3'
   db: 'nublado3'
 
-postgresStorageClass: "longhorn"
+postgresStorageClass: "postgres"
 volumeName: 'postgres-data-rsp'
