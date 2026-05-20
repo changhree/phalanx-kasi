@@ -9,4 +9,4 @@ nublado3_db:
   db: 'nublado3'
 
 postgresStorageClass: "longhorn"
-# volumeName: 'postgres-data-rsp'
+volumeName: 'postgres-data-rsp'
