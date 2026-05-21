@@ -3,7 +3,7 @@ controller:
     images:
       source:
         type: "docker"
-        registry: "registry.hub.docker.com"
+        registry: "registry-1.docker.io"
         repository: "lsstsqre/sciplat-lab"
       numReleases: 0
       numWeeklies: 0
