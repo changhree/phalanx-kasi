@@ -24,7 +24,7 @@ controller:
           privileged: true
           volumeMounts:
             - containerPath: "/home"
-              volumeName: "home"
+              volumeName: "rsp-home"
       secrets:
         - secretName: "nublado-lab-secret"
           secretKey: "postgres-credentials.txt"
