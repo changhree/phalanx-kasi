@@ -5,6 +5,19 @@ controller:
         type: "docker"
         registry: "registry.hub.docker.com"
         repository: "lsstsqre/sciplat-lab"
+      numReleases: 0
+      numWeeklies: 0
+      numDailies: 0
+      pin:
+        - "r30_0_7_rsp2827"
+        - "r30_0_6_rsp2783"
+        - "w_2026_19"
+        - "w_2026_18"
+        - "d_2026_05_20"
+        - "d_2026_05_17"
+        - "recommended"
+        - "latest_weekly"
+        - "latest_daily"
     lab:
       # env:
       #   PGPASSFILE: "/opt/lsst/software/jupyterlab/secrets/postgres-credentials.txt"
