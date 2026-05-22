@@ -55,6 +55,10 @@ controller:
       volumeMounts:
         - containerPath: "/home"
           volumeName: "rsp-home"
+hub:
+  timeout:
+    startup: 300
+
 jupyterhub:
   prePuller:
     continuous:
