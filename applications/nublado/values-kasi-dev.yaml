@@ -26,18 +26,9 @@ controller:
       #   CULL_KERNEL_IDLE_TIMEOUT: "432000"
       #   CULL_TERMINAL_INACTIVE_TIMEOUT: "432000"
       #   DAF_BUTLER_REPOSITORY_INDEX: "/pbs/throng/lsst/software/rsp/butler-repos.yaml"
-      homedirSchema: "username"
+      homedirSchema: "initialThenUsername"
       homedirPrefix: "/home"
       homedirSuffix: "rsp_home"
-      initContainers:
-        - name: "homecreation"
-          image:
-            repository: "registry.hub.docker.com/gabrimaine/initdir"
-            tag: "0.0.4"
-          privileged: true
-          volumeMounts:
-            - containerPath: "/home"
-              volumeName: "rsp-home"
       secrets:
         - secretName: "nublado-lab-secret"
           secretKey: "postgres-credentials.txt"
@@ -69,7 +60,6 @@ jupyterhub:
     continuous:
       enabled: true
   hub:
-    baseUrl: "/nb"
     db:
       url: "postgresql://nublado3@postgres.postgres/nublado3"
       upgrade: true
