@@ -9,6 +9,7 @@ controller:
       numWeeklies: 0
       numDailies: 0
       pin:
+        - "r29_2_0_rsp2697"
         # - "r30_0_7_rsp2827"
         # - "r30_0_6_rsp2783"
         # - "w_2026_19"
@@ -28,7 +29,7 @@ controller:
       #   DAF_BUTLER_REPOSITORY_INDEX: "/pbs/throng/lsst/software/rsp/butler-repos.yaml"
       homedirSchema: "initialThenUsername"
       homedirPrefix: "/home"
-      homedirSuffix: "rsp_home"
+      homedirSuffix: "rsp-home"
       secrets:
         - secretName: "nublado-lab-secret"
           secretKey: "postgres-credentials.txt"
@@ -59,6 +60,13 @@ hub:
   timeout:
     startup: 300
 
+proxy:
+  ingress:
+    annotations:
+      # proxy-body-size is temporary until USDF uses our normal ingress-nginx,
+      # which already configures a larger value.
+      nginx.ingress.kubernetes.io/proxy-body-size: "50m"
+
 jupyterhub:
   prePuller:
     continuous:
@@ -68,6 +76,5 @@ jupyterhub:
       url: "postgresql://nublado3@postgres.postgres/nublado3"
       upgrade: true
   cull:
-    timeout: 432000
-    every: 300
-    maxAge: 604800
+    timeout: 432000  # 5 days
+    maxAge: 691200  # 8 days
