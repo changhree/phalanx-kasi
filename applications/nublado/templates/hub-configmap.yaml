@@ -68,4 +68,4 @@ data:
     c.Spawner.http_timeout = {{ .Values.hub.timeout.startup }}
 
     # Configure the URL to the lab controller.
-    c.NubladoSpawner.controller_url = os.environ.get("NUBLADO_CONTROLLER_URL", "{{ .Values.global.baseUrl }}{{ .Values.controller.config.pathPrefix }}")
+    c.NubladoSpawner.controller_url = "{{ .Values.global.baseUrl }}{{ .Values.controller.config.pathPrefix }}"

@@ -73,9 +73,6 @@ jupyterhub:
     db:
       url: "postgresql://nublado3@postgres.postgres/nublado3"
       upgrade: true
-    extraEnv:
-      NUBLADO_CONTROLLER_URL:
-        value: "http://nublado-controller/nublado"
   cull:
     timeout: 432000
     every: 300
