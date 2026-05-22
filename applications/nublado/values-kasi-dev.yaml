@@ -69,11 +69,6 @@ jupyterhub:
     continuous:
       enabled: true
   hub:
-    # This injects a manual entry into /etc/hosts inside the Hub pod
-    hostAliases:
-      - ip: "10.0.1.120"
-        hostnames:
-          - "rsp.kasi.re.kr"
     baseUrl: "/nb"
     db:
       url: "postgresql://nublado3@postgres.postgres/nublado3"
