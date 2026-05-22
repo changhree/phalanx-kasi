@@ -27,7 +27,7 @@ controller:
       #   CULL_TERMINAL_INACTIVE_TIMEOUT: "432000"
       #   DAF_BUTLER_REPOSITORY_INDEX: "/pbs/throng/lsst/software/rsp/butler-repos.yaml"
       homedirSchema: "username"
-      # homedirPrefix: "/sps/lsst/users"
+      homedirPrefix: "/home"
       homedirSuffix: "rsp_home"
       initContainers:
         - name: "homecreation"
